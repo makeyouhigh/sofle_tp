@@ -1,6 +1,46 @@
+#name: Build ZMK firmware
+#on: [push, pull_request, workflow_dispatch]
+
+#jobs:
+#  build:
+#    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+
 name: Build ZMK firmware
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout user config
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install west
+        run: pip install west
+
+      - name: Init west
+        run: west init -l config
+
+      - name: Update west modules
+        run: west update
+
+      - name: Build
+        run: west build -s zmk/app -b nice_nano -- -DZMK_CONFIG=config -DSHIELD=sofle_left
+
+      - name: Upload firmware
+        uses: actions/upload-artifact@v3
+        with:
+          name: firmware
+          path: build/zephyr/*.uf2
+
+      - name: Upload devicetree
+        uses: actions/upload-artifact@v3
+        with:
+          name: zephyr-dts
+          path: build/zephyr/zephyr.dts
