@@ -196,9 +196,3 @@
     #endif  // MOUSE_PS2_DRIVER_UART
   #endif  // MOUSE_PS2_DT_PRESENT
 #endif  // HAS_MOUSE_TP
-
-/ {
-  __check_mouse_tp: check {
-    broken-value = <this_should_cause_an_error>;
-  };
-};
