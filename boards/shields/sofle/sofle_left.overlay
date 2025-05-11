@@ -8,15 +8,3 @@
                 <&gpio0 23 GPIO_ACTIVE_HIGH>,
                 <&gpio0 22 GPIO_ACTIVE_HIGH>;
 };
-
-&left_encoder {
-    status = "okay";
-};
-
-&mouse_ps2 {
-    status = "disabled";
-};
-
-&mouse_ps2_input_listener {
-    status = "disabled";
-};
