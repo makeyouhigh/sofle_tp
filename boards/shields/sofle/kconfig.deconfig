@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT
 #
 
-if SHIELD_SOFLE_LEFT
+if SHIELD_SOFLE_RIGHT
 
 config ZMK_KEYBOARD_NAME
     default "Sofle TP"
