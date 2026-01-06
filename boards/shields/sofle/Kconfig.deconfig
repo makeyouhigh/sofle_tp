@@ -24,7 +24,7 @@ config I2C
     default y
 
 config SSD1306
-    default y
+    default n
 
 choice ZMK_DISPLAY_WORK_QUEUE
     default ZMK_DISPLAY_WORK_QUEUE_DEDICATED
