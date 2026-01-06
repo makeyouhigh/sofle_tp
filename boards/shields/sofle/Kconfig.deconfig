@@ -3,80 +3,51 @@
 # SPDX-License-Identifier: MIT
 #
 
-if SHIELD_SOFLE_RIGHT
+if SHIELD_TP_SOFLE_RIGHT
 
 config ZMK_KEYBOARD_NAME
-    default "Sofle TP"
+    default "TP Sofle"
 
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
 
 endif # SHIELD_SOFLE_LEFT TO RIGHT
 
-
-if SHIELD_SOFLE_LEFT || SHIELD_SOFLE_RIGHT
+if SHIELD_TP_SOFLE_LEFT || TP_SHIELD_SOFLE_RIGHT
 
 config ZMK_SPLIT
     default y
 
-config BOARD_ENABLE_DCDC
-    bool "Enable DCDC mode"
-    select SOC_DCDC_NRF52X
-    default y
-    depends on (SHIELD_SOFLE_LEFT || SHIELD_SOFLE_RIGHT)
-
-config BOARD_ENABLE_DCDC_HV
-    bool "Enable High Voltage DCDC converter"
-    default y
-    select SOC_DCDC_NRF52X_HV
-    depends on (SHIELD_SOFLE_LEFT || SHIELD_SOFLE_RIGHT)
-
-config BT_CTLR
-    default BT
-
-if USB
-
-config USB_NRFX
-    default y
-
-config USB_DEVICE_STACK
-    default y
-
-endif # USB
-
 if ZMK_DISPLAY
+
+config I2C
+    default y
+
+config SSD1306
+    default y
 
 choice ZMK_DISPLAY_WORK_QUEUE
     default ZMK_DISPLAY_WORK_QUEUE_DEDICATED
 endchoice
 
-endif # ZMK_DISPLAY
+endif
 
-config I2C
-    default n
+if SSD1306
 
-config SSD1306
-    default n
+config LV_Z_VDB_SIZE
+    default 64
 
-#config SSD1306_REVERSE_MODE
-#    default y
+config LV_DPI_DEF
+    default 148
 
-#if SSD1306
-#
-#config LV_Z_VDB_SIZE
-#    default 64
-#
-#config LV_DPI_DEF
-#    default 148
-#
-#config LV_Z_BITS_PER_PIXEL
-#    default 1
-#
-#choice LV_COLOR_DEPTH
-#    default LV_COLOR_DEPTH_1
-#endchoice
-#
-#endif # SSD1306
+config LV_Z_BITS_PER_PIXEL
+    default 1
+
+choice LV_COLOR_DEPTH
+    default LV_COLOR_DEPTH_1
+endchoice
+
+endif
 
 if ZMK_BACKLIGHT
 
@@ -88,4 +59,5 @@ config LED_PWM
 
 endif # ZMK_BACKLIGHT
 
-endif # SHIELD_SOFLE_LEFT || SHIELD_SOFLE_RIGHT
+endif # SHIELD_TP_SOFLE_LEFT || SHIELD_TP_SOFLE_RIGHT
+
