@@ -1,0 +1,13 @@
+file_format: "1"
+id: sofle
+name: Sofle TP
+url: https://github.com/makeyouhigh/sofle_tp
+type: shield
+features:
+  - keys
+  - display
+  - pointer
+  - underglow
+outputs:
+  - usb
+  - ble
