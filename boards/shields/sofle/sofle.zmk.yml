@@ -1,8 +1,9 @@
 file_format: "1"
 id: sofle
-name: Sofle TP
+name: TP Sofle
 url: https://github.com/makeyouhigh/sofle_tp
 type: shield
+requires: [pro_micro]
 features:
   - keys
   - display
@@ -11,3 +12,6 @@ features:
 outputs:
   - usb
   - ble
+siblings:
+  - eyelash_sofle_left
+  - eyelash_sofle_right
